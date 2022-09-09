@@ -6,7 +6,12 @@ namespace Webdownloader
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Test");
+            foreach(string str in args)
+            {
+                Console.WriteLine(str);
+            }
+           
+            Webcrawler webcrawler = new Webcrawler(args);
         }
     }
 }
