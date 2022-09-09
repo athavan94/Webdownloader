@@ -6,14 +6,23 @@ namespace Webdownloader
 {
     class Webcrawler
     {
-        public Webcrawler(string[] args)
+        private string[] args;
+
+        public string[] Args { get => args; set => args = value; }
+
+        public Webcrawler()
         {
             Console.WriteLine();
             Console.WriteLine("- Webcrawler -");
             Console.WriteLine();
-            Console.WriteLine(args[0]);
         }
 
-
+        public void Run()
+        {
+            foreach (string str in args)
+            {
+                Console.WriteLine(str);
+            }
+        }
     }
 }

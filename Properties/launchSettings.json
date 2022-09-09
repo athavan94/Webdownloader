@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Webdownloader": {
+      "commandName": "Project",
+      "commandLineArgs": "Eins Zwei Drei Athavan"
+    }
+  }
+}
