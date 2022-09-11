@@ -7,6 +7,7 @@ namespace Webdownloader
     class Webcrawler
     {
         private string[] args;
+        private bool targetExists;
 
         public string[] Args { get => args; set => args = value; }
 
@@ -19,10 +20,49 @@ namespace Webdownloader
 
         public void Run()
         {
-            foreach (string str in args)
+            // Target URL
+            if(args.Length > 0)
             {
-                Console.WriteLine(str);
+                targetExists = CheckTargetUrl(args[0]);
+
+                if(!targetExists)
+                {
+                    Console.WriteLine("Zieladresse ungültig.");
+                    return;
+                }
+            } else
+            {
+                Console.WriteLine("Zieladresse ungültig.");
+                return;
             }
+
+            // Target Path
+            if (args.Length > 1)
+            {
+                targetExists = CheckTargetPath(args[1]);
+
+                if (!targetExists)
+                {
+                    Console.WriteLine("Zielpfad ungültig.");
+                    return;
+                }
+            } else
+            {
+                Console.WriteLine("Zielpfad ungültig.");
+                return;
+            }
+        }
+
+        private bool CheckTargetUrl(string arg)
+        {
+            Console.WriteLine(arg);
+            return true;
+        }
+
+        private bool CheckTargetPath(string arg)
+        {
+            Console.WriteLine(arg);
+            return true;
         }
     }
 }
