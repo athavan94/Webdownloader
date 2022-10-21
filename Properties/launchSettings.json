@@ -2,7 +2,7 @@
   "profiles": {
     "Webdownloader": {
       "commandName": "Project",
-      "commandLineArgs": "Test"
+      "commandLineArgs": "https://google.ch Test2"
     }
   }
 }

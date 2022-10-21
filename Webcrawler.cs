@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Net;
+using System.Text.RegularExpressions;
 
 namespace Webdownloader
 {
@@ -23,46 +23,57 @@ namespace Webdownloader
             // Target URL
             if(args.Length > 0)
             {
-                targetExists = CheckTargetUrl(args[0]);
-
-                if(!targetExists)
-                {
-                    Console.WriteLine("Zieladresse ungültig.");
-                    return;
-                }
+                targetExists = CheckHttp(args[0]);
             } else
             {
-                Console.WriteLine("Zieladresse ungültig.");
+                Console.WriteLine("First target path is missing.");
                 return;
             }
 
             // Target Path
             if (args.Length > 1)
             {
-                targetExists = CheckTargetPath(args[1]);
-
-                if (!targetExists)
-                {
-                    Console.WriteLine("Zielpfad ungültig.");
-                    return;
-                }
+                targetExists = CheckHttp(args[1]);
             } else
             {
-                Console.WriteLine("Zielpfad ungültig.");
+                Console.WriteLine("Seconde target path is missing.");
                 return;
             }
         }
 
-        private bool CheckTargetUrl(string arg)
+        private bool CheckHttp(string url)
         {
-            Console.WriteLine(arg);
-            return true;
+            Console.WriteLine(url);
+
+            bool validUrl = CheckUrl(url);
+
+            if (validUrl)
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                if (response == null || response.StatusCode != HttpStatusCode.OK)
+                {
+                    Console.WriteLine("URL not exists.");
+                    return false;
+                }
+                else
+                {
+                    Console.WriteLine("URL exists.");
+                    return true;
+                }
+            } else
+            {
+                Console.WriteLine("URL is not valid. It should look be like this: http://urlname.ch");
+                return false;
+            }
         }
 
-        private bool CheckTargetPath(string arg)
+        private bool CheckUrl(string url)
         {
-            Console.WriteLine(arg);
-            return true;
+            string pattern = @"^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$";
+            Regex rgx = new Regex(pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            return rgx.IsMatch(url);
         }
     }
 }
