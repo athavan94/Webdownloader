@@ -7,7 +7,6 @@ namespace Webdownloader
     class Webcrawler
     {
         private string[] args;
-        private bool targetExists;
 
         public string[] Args { get => args; set => args = value; }
 
@@ -23,7 +22,7 @@ namespace Webdownloader
             // Target URL
             if(args.Length > 0)
             {
-                targetExists = CheckHttp(args[0]);
+                CheckHttp(args[0]);
             } else
             {
                 Console.WriteLine("First target path is missing.");
@@ -33,7 +32,7 @@ namespace Webdownloader
             // Target Path
             if (args.Length > 1)
             {
-                targetExists = CheckHttp(args[1]);
+                CheckHttp(args[1]);
             } else
             {
                 Console.WriteLine("Seconde target path is missing.");
