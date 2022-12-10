@@ -18,7 +18,7 @@ namespace Webdownloader
             
             if (!rgx.IsMatch(url))
             {
-                Console.WriteLine("URL is not valid. It should look be like this: http://urlname.ch");
+                Console.WriteLine("URL is not valid. It should look like this: http://urlname.ch");
                 return false;
             }
 

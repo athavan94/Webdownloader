@@ -6,8 +6,15 @@ namespace Webdownloader
     {
         static void Main(string[] args)
         {
-            Webcrawler webcrawler = new Webcrawler{Args = args};
-            webcrawler.Run();
+            //Webcrawler webcrawler = new Webcrawler{Args = args};
+            //webcrawler.Run();
+
+            Console.WriteLine();
+            Console.WriteLine("- Webcrawler -");
+            Console.WriteLine();
+
+            Webpage webpage = new Webpage();
+            webpage.CheckURL(args[0]);
         }
     }
 }
