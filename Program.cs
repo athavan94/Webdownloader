@@ -14,7 +14,13 @@ namespace Webdownloader
             Console.WriteLine();
 
             Webpage webpage = new Webpage();
-            webpage.CheckURL(args[0]);
+            bool checkUrl = webpage.CheckURL(args[0]);
+            //Download html code
+            if (checkUrl)
+            {
+                string htmlString = webpage.GetResponseHtmlString(args[0]);
+                Console.WriteLine(htmlString);
+            }
         }
     }
 }
