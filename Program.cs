@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Threading.Tasks;
 
 namespace Webdownloader
 {
@@ -17,8 +14,9 @@ namespace Webdownloader
             string htmlStr = crawler.GetHtmlResponseString();
             List<string> urlList = crawler.GetUrlList();
             
-            fileWriter = new FileWriter(args[0], htmlStr);
+            fileWriter = new FileWriter(args[0], htmlStr, urlList);
             fileWriter.CreateFile();
+            fileWriter.CreateUrlListFile();
 
             Console.WriteLine("Drücken Sie eine beliebige Taste, um fortzufahren...");
             Console.ReadKey();
