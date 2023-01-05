@@ -7,23 +7,46 @@ namespace Webdownloader
 {
     class Program
     {
+        private static Seed seed;
+        private static Queue queue;
+        private static Crawled crawled;
+
         static void Main(string[] args)
         {
-            //Webcrawler webcrawler = new Webcrawler{Args = args};
-            //webcrawler.Run();
+            //StartCrawlerAsync();
 
-            Console.WriteLine();
-            Console.WriteLine("- Webcrawler -");
-            Console.WriteLine();
 
-            Webpage webpage = new Webpage();
-            bool checkUrl = webpage.CheckURL(args[0]);
-            //Download html code
-            if (checkUrl)
-            {
-                string htmlString = webpage.GetResponseHtmlString(args[0]);
-                Console.WriteLine(htmlString);
-            }
+            Console.WriteLine("Drücken Sie eine beliebige Taste, um fortzufahren...");
+            Console.ReadKey();
+
+            //Download one page
+            //Save somewhere
+            //Save url from Webpage
+        }
+
+        private static async Task StartCrawlerAsync()
+        {
+            Initialize();
+
+            Crawl();
+        }
+
+        private static void Crawl()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void Initialize()
+        {
+            string path = Directory.GetCurrentDirectory();
+            string seedPath = Path.Combine(path, "Seed.txt");
+            string queuePath = Path.Combine(path, "Queue.txt");
+            string crawledPath = Path.Combine(path, "Crawled.txt");
+
+            seed = new(seedPath);
+            var seedURLs = seed.Items;
+            queue = new(queuePath, seedURLs);
+            crawled = new(crawledPath);
         }
     }
 }
