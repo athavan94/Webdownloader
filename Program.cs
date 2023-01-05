@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Webdownloader
@@ -43,10 +42,10 @@ namespace Webdownloader
             string queuePath = Path.Combine(path, "Queue.txt");
             string crawledPath = Path.Combine(path, "Crawled.txt");
 
-            seed = new(seedPath);
+            seed = new Seed(seedPath);
             var seedURLs = seed.Items;
-            queue = new(queuePath, seedURLs);
-            crawled = new(crawledPath);
+            queue = new Queue(queuePath, seedURLs);
+            crawled = new Crawled(crawledPath);
         }
     }
 }
