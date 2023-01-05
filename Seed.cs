@@ -23,7 +23,7 @@ namespace Webdownloader
             using StreamWriter streamWriter = File.CreateText(path);
 
             foreach (string url in seedURLs)
-                streamWriter.WriteLine(url);
+                streamWriter.WriteLine(url.Trim().ToLower());
         }
     }
 }

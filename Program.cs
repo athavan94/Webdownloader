@@ -27,12 +27,12 @@ namespace Webdownloader
         {
             Initialize();
 
-            Crawl();
+            await Crawl();
         }
 
-        private static void Crawl()
+        private static async Task Crawl()
         {
-            throw new NotImplementedException();
+            
         }
 
         private static void Initialize()
@@ -44,7 +44,7 @@ namespace Webdownloader
 
             seed = new Seed(seedPath);
             var seedURLs = seed.Items;
-            queue = new Queue(queuePath, seedURLs);
+            //queue = new Queue(queuePath, seedURLs);
             crawled = new Crawled(crawledPath);
         }
     }
