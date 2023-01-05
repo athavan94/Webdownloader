@@ -12,22 +12,16 @@ namespace Webdownloader
         private static FileWriter fileWriter;
 
         static void Main(string[] args)
-        {
-            //StartCrawlerAsync();
-
-
+        { 
             crawler = new Crawler(args[0]);
             string htmlStr = crawler.GetHtmlResponseString();
-
+            List<string> urlList = crawler.GetUrlList();
+            
             fileWriter = new FileWriter(args[0], htmlStr);
             fileWriter.CreateFile();
 
             Console.WriteLine("Drücken Sie eine beliebige Taste, um fortzufahren...");
             Console.ReadKey();
-
-            //Download one page
-            //Save somewhere
-            //Save url from Webpage
         }
     }
 }
