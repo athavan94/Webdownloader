@@ -26,7 +26,7 @@ namespace Webdownloader
 
             if (!string.IsNullOrWhiteSpace(webPage))
             {
-                ParseContent();
+                //ParseContent();
                 ParsedURLs();
             }
         }
