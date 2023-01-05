@@ -44,7 +44,7 @@ namespace Webdownloader
 
             seed = new Seed(seedPath);
             var seedURLs = seed.Items;
-            //queue = new Queue(queuePath, seedURLs);
+            queue = new Queue(queuePath, seedURLs);
             crawled = new Crawled(crawledPath);
         }
     }
