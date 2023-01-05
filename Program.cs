@@ -50,7 +50,13 @@ namespace Webdownloader
 
         private static void Initialize()
         {
-            string path = Directory.GetCurrentDirectory();
+            string path = Directory.GetCurrentDirectory() + "\\Test";
+
+            if(!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
             string seedPath = Path.Combine(path, "Seed.txt");
             string queuePath = Path.Combine(path, "Queue.txt");
             string crawledPath = Path.Combine(path, "Crawled.txt");
