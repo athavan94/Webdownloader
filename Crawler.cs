@@ -11,7 +11,6 @@ namespace Webdownloader
     {
         private readonly string url;
         private List<string> htmlStr;
-        private int index = 0;
         private List<string> urlListTmp;
 
         private List<string> _ulrList;
@@ -49,7 +48,6 @@ namespace Webdownloader
                 if (url != "")
                 {
                     GetHtmlResponseString(url);
-                    index++;
                 }
             }
 

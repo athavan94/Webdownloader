@@ -17,12 +17,10 @@ namespace Webdownloader
             List<string> urlList = crawler.urlList;
 
             fileWriter = new FileWriter(htmlStr, urlList);
-            bool test = true;
-            //fileWriter.CreateFile();
-            //fileWriter.CreateUrlListFile();
+            fileWriter.CreateFile();
 
-            //Console.WriteLine("Drücken Sie eine beliebige Taste, um fortzufahren...");
-            //Console.ReadKey();
+            Console.WriteLine("Drücken Sie eine beliebige Taste, um fortzufahren...");
+            Console.ReadKey();
         }
     }
 }

@@ -6,7 +6,6 @@ namespace Webdownloader
 {
     class FileWriter
     {
-        private string path;
         private readonly List<string> htmlStr;
         private List<string> urlList;
 
@@ -18,41 +17,27 @@ namespace Webdownloader
             ReplaceUrl();
         }
 
-        //public void CreateFile()
-        //{
-           
-        //    path = Directory.GetCurrentDirectory() + "\\Webcrawler";
+        public void CreateFile()
+        {
+            int index = 0;
+            foreach (string url in urlList)
+            {
+                string path = Directory.GetCurrentDirectory() + "\\Webcrawler";
 
-        //    if (!Directory.Exists(path))
-        //    {
-        //        Directory.CreateDirectory(path);
-        //    }
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
 
-        //    string newPath = Path.Combine(path, url + ".txt");
+                string newPath = Path.Combine(path, url + ".txt");
 
-        //    using StreamWriter streamWriter = File.CreateText(newPath);
+                using StreamWriter streamWriter = File.CreateText(newPath);
 
-        //    streamWriter.WriteLine(htmlStr);
-        //}
+                streamWriter.WriteLine(htmlStr[index]);
 
-        //public void CreateUrlListFile()
-        //{
-        //    path = Directory.GetCurrentDirectory() + "\\Webcrawler";
-
-        //    if (!Directory.Exists(path))
-        //    {
-        //        Directory.CreateDirectory(path);
-        //    }
-
-        //    string newPath = Path.Combine(path, url + ".list.txt");
-
-        //    using StreamWriter streamWriter = File.CreateText(newPath);
-
-        //    foreach (string urlL in urlList)
-        //    {
-        //        streamWriter.WriteLine(urlL);
-        //    }
-        //}
+                index++;
+            } 
+        }
 
         private void ReplaceUrl()
         {
