@@ -9,17 +9,20 @@ namespace Webdownloader
         private static FileWriter fileWriter;
 
         static void Main(string[] args)
-        { 
-            crawler = new Crawler(args[0]);
-            string htmlStr = crawler.GetHtmlResponseString();
-            List<string> urlList = crawler.GetUrlList();
-            
-            fileWriter = new FileWriter(args[0], htmlStr, urlList);
-            fileWriter.CreateFile();
-            fileWriter.CreateUrlListFile();
+        {
+            string url = "https://sanga.dev/";
 
-            Console.WriteLine("Drücken Sie eine beliebige Taste, um fortzufahren...");
-            Console.ReadKey();
+            crawler = new Crawler(url);
+            List<string> htmlStr = crawler.Start();
+            List<string> urlList = crawler.urlList;
+
+            fileWriter = new FileWriter(htmlStr, urlList);
+            bool test = true;
+            //fileWriter.CreateFile();
+            //fileWriter.CreateUrlListFile();
+
+            //Console.WriteLine("Drücken Sie eine beliebige Taste, um fortzufahren...");
+            //Console.ReadKey();
         }
     }
 }

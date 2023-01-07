@@ -2,7 +2,7 @@
   "profiles": {
     "Webdownloader": {
       "commandName": "Project",
-      "commandLineArgs": "http://books.toscrape.com"
+      "commandLineArgs": "https://sanga.dev/"
     }
   }
 }

@@ -7,59 +7,72 @@ namespace Webdownloader
     class FileWriter
     {
         private string path;
-        private string url;
-        private readonly string htmlStr;
-        private readonly List<string> urlList;
+        private readonly List<string> htmlStr;
+        private List<string> urlList;
 
-        public FileWriter(string url, string htmlStr, List<string> urlList)
+        public FileWriter(List<string> htmlStr, List<string> urlList)
         {
-            this.url = url;
             this.htmlStr = htmlStr;
             this.urlList = urlList;
 
             ReplaceUrl();
         }
 
-        public void CreateFile()
-        {
-            path = Directory.GetCurrentDirectory() + "\\Test";
+        //public void CreateFile()
+        //{
+           
+        //    path = Directory.GetCurrentDirectory() + "\\Webcrawler";
 
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
+        //    if (!Directory.Exists(path))
+        //    {
+        //        Directory.CreateDirectory(path);
+        //    }
 
-            string newPath = Path.Combine(path, url + ".txt");
+        //    string newPath = Path.Combine(path, url + ".txt");
 
-            using StreamWriter streamWriter = File.CreateText(newPath);
+        //    using StreamWriter streamWriter = File.CreateText(newPath);
 
-            streamWriter.WriteLine(htmlStr);
-        }
+        //    streamWriter.WriteLine(htmlStr);
+        //}
 
-        public void CreateUrlListFile()
-        {
-            path = Directory.GetCurrentDirectory() + "\\Test";
+        //public void CreateUrlListFile()
+        //{
+        //    path = Directory.GetCurrentDirectory() + "\\Webcrawler";
 
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
+        //    if (!Directory.Exists(path))
+        //    {
+        //        Directory.CreateDirectory(path);
+        //    }
 
-            string newPath = Path.Combine(path, url + ".list.txt");
+        //    string newPath = Path.Combine(path, url + ".list.txt");
 
-            using StreamWriter streamWriter = File.CreateText(newPath);
+        //    using StreamWriter streamWriter = File.CreateText(newPath);
 
-            foreach (string urlL in urlList)
-            {
-                streamWriter.WriteLine(urlL);
-            }
-        }
+        //    foreach (string urlL in urlList)
+        //    {
+        //        streamWriter.WriteLine(urlL);
+        //    }
+        //}
 
         private void ReplaceUrl()
         {
-            string pattern = @"^(https?://)";
-            string replacement = "";
-            url = Regex.Replace(url, pattern, replacement);
+            List<string> urlListNew = new List<string>();
+            foreach (string url in urlList)
+            {
+                if (url != "")
+                {
+                    string pattern = @"^https?://([^/]*)";
+
+                    Match match = Regex.Match(url, pattern);
+
+                    if (match.Success)
+                    {
+                        urlListNew.Add(match.Groups[1].Value);
+                    }
+                }
+            }
+
+            urlList = urlListNew;
         }
     }
 }
