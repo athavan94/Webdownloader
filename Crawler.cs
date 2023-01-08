@@ -1,7 +1,8 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 
@@ -12,6 +13,7 @@ namespace Webdownloader
         private readonly string url;
         private List<string> htmlStr;
         private List<string> urlListTmp;
+        private List<string> imgList;
 
         private List<string> _ulrList;
         public List<string> urlList
@@ -33,6 +35,7 @@ namespace Webdownloader
             htmlStr = new List<string>();
             urlList = new List<string>();
             urlListTmp = new List<string>();
+            imgList = new List<string>();
         }
 
         public List<string> Start()
@@ -42,6 +45,9 @@ namespace Webdownloader
 
             urlListTmp.Add(url);
             GetUrlList();
+            GetImgList();
+
+            htmlStr.Clear();
 
             foreach (string url in urlListTmp)
             {
@@ -92,8 +98,6 @@ namespace Webdownloader
                     urlListTmp.Add(linkedUrl);
                 }
             }
-
-            htmlStr.Clear();
         }
 
         private string GetLinkedUrl(string match)
@@ -122,6 +126,18 @@ namespace Webdownloader
             }
 
             return Regex.Replace(url, this.url, "");
+        }
+
+        private void GetImgList()
+        {
+            string linkedImg;
+
+            Regex regexImg = new Regex("<img .*?>");
+
+            foreach (var match in regexImg.Matches(htmlStr[0]))
+            {
+                imgList.Add(match.ToString());
+            }
         }
     }
 }
