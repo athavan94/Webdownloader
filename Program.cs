@@ -10,7 +10,7 @@ namespace Webdownloader
 
         static void Main(string[] args)
         {
-            string url = "https://sanga.dev/";
+            string url = args[0];
 
             crawler = new Crawler(url);
             List<string> htmlStr = crawler.Start();
